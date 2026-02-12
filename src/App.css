@@ -58,8 +58,10 @@ body {
 
 .demo-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .form-section, .results-section {
@@ -67,6 +69,7 @@ body {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
 }
 
 .form-section h2, .results-section h2 {
