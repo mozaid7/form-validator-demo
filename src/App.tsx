@@ -1,7 +1,35 @@
 import React, { useState } from "react";
 import { FormValidator, CheckboxGroup } from "form-validator-widget";
-
 import './App.css';
+
+const FormCheckboxGroup = ({ name, options }: { name: string; options: any[] }) => {
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  
+  const handleChange = (name: string, values: string[]) => {
+    setSelectedValues(values);
+    
+    const input = document.querySelector(`input[name="${name}"]`) as HTMLInputElement;
+    if (input) {
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      )?.set;
+      nativeInputValueSetter?.call(input, JSON.stringify(values));
+      
+      const changeEvent = new Event('change', { bubbles: true });
+      input.dispatchEvent(changeEvent);
+    }
+  };
+  
+  return (
+    <CheckboxGroup
+      name={name}
+      options={options}
+      values={selectedValues}
+      onChange={handleChange}
+    />
+  );
+};
 
 function App() {
   const [submittedData, setSubmittedData] = useState<Record<string, any> | null>(null);
@@ -19,7 +47,6 @@ function App() {
         pattern: 'Only letters, numbers, and underscores allowed'
       }
     },
-
     email: {
       required: true,
       email: true,
@@ -28,7 +55,6 @@ function App() {
         email: 'Please enter a valid email address'
       }
     },
-
     password: {
       required: true,
       minLength: 8,
@@ -41,7 +67,6 @@ function App() {
         complexity: 'Password must contain uppercase, lowercase, number, and special character'
       }
     },
-
     age: {
       required: true,
       number: true,
@@ -54,7 +79,6 @@ function App() {
         max: 'Age cannot exceed 100'
       }
     },
-
     website: {
       required: false,
       url: true,
@@ -62,7 +86,6 @@ function App() {
         url: 'Please enter a valid URL (include https://)'
       }
     },
-
     phone: {
       required: true,
       tel: true,
@@ -71,12 +94,11 @@ function App() {
         tel: 'Please enter a valid phone number'
       }
     },
-
     birthDate: {
       required: true,
       date: true,
       minDate: '1900-01-01',
-      maxDate: new Date().toISOString().split('T')[0], // Today
+      maxDate: new Date().toISOString().split('T')[0],
       messages: {
         required: 'Birth date is required',
         date: 'Please enter a valid date',
@@ -84,7 +106,6 @@ function App() {
         maxDate: 'Date cannot be in the future'
       }
     },
-
     country: {
       required: true,
       select: true,
@@ -92,7 +113,6 @@ function App() {
         required: 'Please select a country'
       }
     },
-
     gender: {
       required: true,
       radioGroup: true,
@@ -100,7 +120,6 @@ function App() {
         required: 'Please select your gender'
       }
     },
-
     interests: {
       required: true,
       checkboxGroup: true,
@@ -112,7 +131,6 @@ function App() {
         maxSelected: 'Please select no more than 4 interests'
       }
     },
-
     terms: {
       required: true,
       messages: {
@@ -144,7 +162,7 @@ function App() {
           <span className="highlight">debounced validation</span>
         </p>
         <div className="package-info">
-          <span className="badge">form-validator-widget@1.1.0</span>
+          <span className="badge">form-validator-widget@1.1.2</span>
           <span className="badge">TypeScript</span>
           <span className="badge">React + Vite</span>
         </div>
@@ -255,10 +273,7 @@ function App() {
 
             <div className="form-group">
               <label>Interests * (select 2-4)</label>
-              <CheckboxGroup
-                name="interests"
-                options={interestOptions}
-              />
+              <FormCheckboxGroup name="interests" options={interestOptions} />
             </div>
 
             <div className="form-group checkbox-single">
@@ -288,7 +303,7 @@ function App() {
         <p>
           Built with Vite + React + TypeScript | 
           <a href="https://www.npmjs.com/package/form-validator-widget" target="_blank">
-            form-validator-widget@1.1.0
+            form-validator-widget@1.1.2
           </a>
         </p>
       </footer>
