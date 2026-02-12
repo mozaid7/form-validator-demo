@@ -158,7 +158,12 @@ body {
   cursor: pointer;
 }
 
+form button[type="submit"] {
+  display: none !important;
+}
+
 .submit-btn {
+  display: block !important;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
