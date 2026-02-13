@@ -173,7 +173,7 @@ function App() {
           Complete demo with <span className="highlight">form-validator-widget@2.1.1</span>
         </p>
         <div className="package-info">
-          <span className="badge">form-validator-widget@2.1.1</span>
+          <span className="badge">form-validator-widget@2.1.6</span>
           <span className="badge">TypeScript</span>
           <span className="badge">CSS Modules</span>
         </div>
@@ -315,7 +315,7 @@ function App() {
         <p>
           Built with Vite + React + TypeScript | 
           <a href="https://www.npmjs.com/package/form-validator-widget" target="_blank">
-            form-validator-widget@2.1.1
+            form-validator-widget@2.1.6
           </a>
         </p>
       </footer>
