@@ -11,6 +11,17 @@ body {
   padding: 2rem;
 }
 
+/* Add this temporarily to debug */
+input[type="hidden"] {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px;
+  background: #f0f0f0;
+  border: 1px dashed #999;
+  font-size: 12px;
+}
+
 .app {
   max-width: 1200px;
   margin: 0 auto;
