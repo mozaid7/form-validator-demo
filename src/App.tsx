@@ -2,47 +2,6 @@ import React, { useState } from "react";
 import { FormValidator, CheckboxGroup } from "form-validator-widget";
 import './App.css';
 
-const CheckboxGroupWrapper = ({ name, options }: { name: string; options: any[] }) => {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  
-  const handleChange = (name: string, values: string[]) => {
-    setSelectedValues(values);
-    
-    // Directly update the form values in FormValidator
-    // Find the input element and set its value
-    setTimeout(() => {
-      // Create a hidden input if it doesn't exist
-      let hiddenInput = document.querySelector(`input[name="${name}"][type="hidden"]`) as HTMLInputElement;
-      if (!hiddenInput) {
-        hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = name;
-        document.querySelector('form')?.appendChild(hiddenInput);
-      }
-      hiddenInput.value = JSON.stringify(values);
-      
-      // Dispatch change event
-      const event = new Event('change', { bubbles: true });
-      hiddenInput.dispatchEvent(event);
-      
-      // Also dispatch blur
-      const blurEvent = new Event('blur', { bubbles: true });
-      hiddenInput.dispatchEvent(blurEvent);
-      
-      console.log('Checkbox values updated:', name, values);
-    }, 0);
-  };
-  
-  return (
-    <CheckboxGroup
-      name={name}
-      options={options}
-      values={selectedValues}
-      onChange={handleChange}
-    />
-  );
-};
-
 function App() {
   const [submittedData, setSubmittedData] = useState<Record<string, any> | null>(null);
 
