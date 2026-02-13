@@ -129,10 +129,10 @@ function App() {
       <header className="app-header">
         <h1>📋 Form Validator Widget</h1>
         <p className="subtitle">
-          Complete demo with <span className="highlight">form-validator-widget@2.1.0</span>
+          Complete demo with <span className="highlight">form-validator-widget@2.1.1</span>
         </p>
         <div className="package-info">
-          <span className="badge">form-validator-widget@2.1.0</span>
+          <span className="badge">form-validator-widget@2.1.1</span>
           <span className="badge">TypeScript</span>
           <span className="badge">CSS Modules</span>
         </div>
@@ -148,18 +148,16 @@ function App() {
             enableDebounce={true}
             debounceDelay={500}
           >
-            {/* TEXT input - NO onBlur handlers needed! */}
             <div className="form-group">
               <label>Username *</label>
               <input 
                 type="text" 
                 name="username" 
-                placeholder="Enter username (min 3 chars, letters/numbers/_)"
+                placeholder="Enter username"
               />
-              <small>Only letters, numbers, and underscores allowed</small>
+              <small>3-20 chars, letters, numbers, underscores</small>
             </div>
 
-            {/* EMAIL input */}
             <div className="form-group">
               <label>Email *</label>
               <input 
@@ -169,7 +167,6 @@ function App() {
               />
             </div>
 
-            {/* PASSWORD input */}
             <div className="form-group">
               <label>Password *</label>
               <input 
@@ -177,22 +174,18 @@ function App() {
                 name="password" 
                 placeholder="Create a strong password"
               />
-              <small>Must have uppercase, lowercase, number, and special char</small>
+              <small>Uppercase, lowercase, number, special char</small>
             </div>
 
-            {/* NUMBER input */}
             <div className="form-group">
               <label>Age *</label>
               <input 
                 type="number" 
                 name="age" 
                 placeholder="Enter your age"
-                min="18"
-                max="100"
               />
             </div>
 
-            {/* URL input */}
             <div className="form-group">
               <label>Website (Optional)</label>
               <input 
@@ -202,7 +195,6 @@ function App() {
               />
             </div>
 
-            {/* PHONE input */}
             <div className="form-group">
               <label>Phone Number *</label>
               <input 
@@ -212,7 +204,6 @@ function App() {
               />
             </div>
 
-            {/* DATE input */}
             <div className="form-group">
               <label>Birth Date *</label>
               <input 
@@ -221,7 +212,6 @@ function App() {
               />
             </div>
 
-            {/* SELECT dropdown */}
             <div className="form-group">
               <label>Country *</label>
               <select name="country" defaultValue="">
@@ -234,7 +224,6 @@ function App() {
               </select>
             </div>
 
-            {/* RADIO group - NO wrapper needed! */}
             <div className="form-group">
               <label>Gender *</label>
               <div className="radio-group">
@@ -250,7 +239,6 @@ function App() {
               </div>
             </div>
 
-            {/* CHECKBOX group - NO wrapper needed! */}
             <div className="form-group">
               <label>Interests * (select 2-4)</label>
               <CheckboxGroup
@@ -259,7 +247,6 @@ function App() {
               />
             </div>
 
-            {/* SINGLE CHECKBOX */}
             <div className="form-group checkbox-single">
               <label className="checkbox-label">
                 <input type="checkbox" name="terms" value="accepted" />
@@ -271,15 +258,23 @@ function App() {
               Submit Form
             </button>
           </FormValidator>
-        </div>
 
+          {submittedData && (
+            <div className="results-section">
+              <h2>✅ Form Submitted Successfully!</h2>
+              <pre className="results">
+                {JSON.stringify(submittedData, null, 2)}
+              </pre>
+            </div>
+          )}
+        </div>
       </div>
 
       <footer className="app-footer">
         <p>
           Built with Vite + React + TypeScript | 
           <a href="https://www.npmjs.com/package/form-validator-widget" target="_blank">
-            form-validator-widget@2.1.0
+            form-validator-widget@2.1.1
           </a>
         </p>
       </footer>
