@@ -273,14 +273,6 @@ function App() {
           </FormValidator>
         </div>
 
-        {submittedData && (
-          <div className="results-section">
-            <h2>✅ Form Submitted Successfully!</h2>
-            <pre className="results">
-              {JSON.stringify(submittedData, null, 2)}
-            </pre>
-          </div>
-        )}
       </div>
 
       <footer className="app-footer">
